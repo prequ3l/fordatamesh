@@ -29,7 +29,7 @@ def start(message):
 
 def get_token(message):
     global token
-    token: str = message.text.strip()
+    token = message.text.strip()
 
     markup = types.InlineKeyboardMarkup()
     btn_1 = types.InlineKeyboardButton('Оценки', callback_data='marks')
