@@ -29,7 +29,7 @@ def start(message):
 
 def get_token(message):
     global token
-    token = message.text.strip()
+    token: str = message.text.strip()
 
     markup = types.InlineKeyboardMarkup()
     btn_1 = types.InlineKeyboardButton('Оценки', callback_data='marks')
@@ -40,7 +40,6 @@ def get_token(message):
     bot.send_message(message.chat.id, 'Отлично, теперь выберите нужное', reply_markup=markup)
 
     try:
-
         bot.delete_message(message.chat.id, message.message_id - 1)
         bot.delete_message(message.chat.id, message.message_id - 2)
         bot.delete_message(message.chat.id, message.message_id)
@@ -81,6 +80,7 @@ def main(message):
     markup.row(btn_1, btn_2, btn_3)
 
     bot.send_message(message.chat.id, 'Выберите нужное', reply_markup=markup)
+
     try:
         bot.delete_message(message.chat.id, message.message_id)
     except telebot.apihelper.ApiTelegramException:
@@ -213,7 +213,7 @@ def callback_message(callback):
 
         name_date: str = dt.date(*list(map(int, res_date.isoformat()[:10].split('-')))).strftime("%A")
         translate_date: str = GoogleTranslator(source='en', target='ru').translate(name_date).upper()
-        res = f'{translate_date} {res_date.isoformat()[:10]}\n{'-' * 100}\n{res}'
+        res: str = f'{translate_date} {res_date.isoformat()[:10]}\n{'-' * 100}\n{res}'
 
         bot.send_message(callback.message.chat.id, res, reply_markup=markup, parse_mode='html')
 
